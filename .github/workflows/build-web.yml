@@ -1,0 +1,32 @@
+name: Build Web
+
+on:
+  workflow_call:
+
+jobs:
+  build-web:
+    environment: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # - name: Authenticate with private NPM
+      #   run: |
+      #     echo "registry=https://repo1.uhc.com/artifactory/api/npm/npm-virtual" > .npmrc
+      #     echo "//repo1.uhc.com/artifactory/api/npm/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" >> .npmrc
+      #     cat .npmrc
+      #     npm whoami
+
+      - name: testing
+        uses: iamhollow/workflowz/.github/actions/joke-action@main
+
+      # - name: Cache dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ~/.npm
+      #     key: npm-${{ hashFiles('package-lock.json') }}
+      #     restore-keys: npm-
+
+      # - name: Install dependencies
+      #   run: npm install
